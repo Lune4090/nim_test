@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "reverseDeps": {
+    "zippy": {
+      "0.10.12": {
+        "88baafc3678bcd566f37efcb92b8e9357d75b294": [
+          {
+            "name": "wasmrt",
+            "version": "0.1.0",
+            "checksum": "7bd4bd26a0673e8a2cdd7e31ba75a3aa0babba8e"
+          }
+        ]
+      }
+    },
+    "wasmrt": {
+      "0.1.0": {
+        "7bd4bd26a0673e8a2cdd7e31ba75a3aa0babba8e": [
+          {
+            "name": "jsbind",
+            "version": "0.1.1",
+            "checksum": "4b25dc5465197d5b72d46a75a1d73753d41cc062"
+          }
+        ]
+      }
+    },
+    "chroma": {
+      "0.2.7": {
+        "f873f4b97e87a82e27e0b85bf9130fe3e320a2b8": [
+          {
+            "name": "plotly",
+            "version": "0.3.3",
+            "checksum": "a0687b7a917ebea721ceb9466125440074bac044"
+          }
+        ]
+      }
+    },
+    "jsbind": {
+      "0.1.1": {
+        "4b25dc5465197d5b72d46a75a1d73753d41cc062": [
+          {
+            "name": "plotly",
+            "version": "0.3.3",
+            "checksum": "a0687b7a917ebea721ceb9466125440074bac044"
+          }
+        ]
+      }
+    },
+    "webview": {
+      "0.1.0": {
+        "2d714d280055de9d0a33e6a730f1099feb1261aa": [
+          {
+            "name": "plotly",
+            "version": "0.3.3",
+            "checksum": "a0687b7a917ebea721ceb9466125440074bac044"
+          }
+        ]
+      }
+    },
+    "ws": {
+      "0.5.0": {
+        "ae4daf4ae302d0431f3c2d385ae9d2fe767a3246": [
+          {
+            "name": "plotly",
+            "version": "0.3.3",
+            "checksum": "a0687b7a917ebea721ceb9466125440074bac044"
+          }
+        ]
+      }
+    },
+    "plotly": {
+      "0.3.3": {
+        "a0687b7a917ebea721ceb9466125440074bac044": [
+          {
+            "path": "/home/lune/nim_test"
+          }
+        ]
+      }
+    }
+  }
+}
