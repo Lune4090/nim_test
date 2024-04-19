@@ -1,5 +1,5 @@
 import plotly
-import std/random
+import random
 
 proc draw_histogram*() = 
   let
