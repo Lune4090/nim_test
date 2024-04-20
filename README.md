@@ -1,5 +1,19 @@
 # nim/nimble overview
 
+## 感想
+
+### 20240420
+
+Clever Cとでも言うべき言語.
+
+個人的に必要かつ今まで触れてきた言語(python, julia, c++, rust)で得られなかった
+- ミニマルかつ高速な静的コンパイル
+- 後から見返しても問題ない記述の簡潔さ
+- 必要最低限のマクロやライブラリなどの拡張性
+の両立をしているのでこれからの主軸にしたいと思った.
+
+ただキラーアプリっぽいものが思いつかないからまだ知名度が低い状態は続きそう
+
 ## Useful website
 
 ### [Nim Tutorial](https://nim-lang.org/docs/tut1.html)
@@ -36,7 +50,7 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
   - [terminal](https://nim-lang.org/docs/terminal.html)
     - progress bar描ける
   - [sugar](https://nim-lang.org/docs/sugar.html)
-    - (x, y) => x+yとかdump(expr出力)とかできる
+    - (x, y) => x+yとかdump(hoge)(AST出力)とかできる
 
 - Plotting
   - [nim-plotly](https://github.com/SciNim/nim-plotly/tree/master/examples)
@@ -46,8 +60,10 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
     - 色指定、必須ではない
 
 - Data analysis
-  - [arraymancer](https://github.com/mratsim/Arraymancer) : seq.toTensor.reshapeでTensor作成。juliaに比べると限定的だがブロードキャストが可能、ニューラルネットワーク用のツールも集約
-  - [datamancer](https://scinim.github.io/Datamancer/datamancer.html) : col-indexのdataframe(seq)
+  - [arraymancer](https://github.com/mratsim/Arraymancer)
+    - seq.toTensor.reshapeでTensor作成。juliaに比べると限定的だがブロードキャストが可能、ニューラルネットワーク用のツールも集約
+  - [datamancer](https://scinim.github.io/Datamancer/datamancer.html)
+    - col-indexのdataframe(seq)
 
 - Game/GUI
   - [naylib](https://github.com/planetis-m/naylib)
@@ -58,7 +74,9 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
     - WebAssembly(via emscripten, using [this config file](https://github.com/planetis-m/raylib-examples/blob/main/core/basic_window_web.nims))やAndroid(need Android SDK and some setting)向けのCompileもできるので、後述のweb frameworkと組み合わせたりすればいい感じにリッチなWebApp作れるんじゃない、ひとまずやる気はないけど
 
 - Science
-  - [Unchained](https://github.com/SciNim/Unchained) : compile-time unit check, 10.kg + 5.lbsみたいな記法ができる
+  - [Unchained](https://github.com/SciNim/Unchained)
+    - compile-time unit checker
+    - 10.kg + 5.lbsみたいに記法付きの計算ができる
   - [NumericalNim](https://github.com/SciNim/numericalnim)
     - Vector(Seqではない), Opt, Fit, Interpolat, 更にlinspaceまで！
 
@@ -138,11 +156,11 @@ finally:
 
 ### nim c <name.nim> と nimble buildの違い
 
-nim c <> : 対象のソースコードをコンパイルするコマンド
-- nim.cfgを参照するみたい
-- パッケージのアドレスが分かっているならそれらは無制限に使用できる
+- nim c <> : 対象のソースコードをコンパイルするコマンド
+  - nim.cfgを参照するみたい
+  - パッケージのアドレスが分かっているならそれらは無制限に使用できる
 
-nimble build : プロジェクトをビルドするコマンド
-- <project name>.nimbleを参照する
-- nimble initがそうであったように、ディレクトリ内を一つのプロジェクトとしてみている。
-- だから、ソースコード内にインストール済みのライブラリがあっても依存関係として記載されていないなら、buildできない、ということになる。
+- nimble build : プロジェクトをビルドするコマンド
+  - <project name>.nimbleを参照する
+  - nimble initがそうであったように、ディレクトリ内を一つのプロジェクトとしてみている。
+  - だから、ソースコード内にインストール済みのライブラリがあっても依存関係として記載されていないなら、buildできない、ということになる。
