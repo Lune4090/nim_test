@@ -22,7 +22,7 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
 
 ### nimで生きていくのに必要なパッケージ
 
-Essensial
+**Essensial**
 
 - Standard libraries ("std/"で始まるが必須ではない)
   - [random](https://nim-lang.org/docs/random.html)
@@ -62,32 +62,33 @@ Essensial
   - [NumericalNim](https://github.com/SciNim/numericalnim)
     - Vector(Seqではない), Opt, Fit, Interpolat, 更にlinspaceまで！
 
-2Dgraphics
-- [pixie](https://github.com/treeform/pixiebook)
-  - Cairoとかと同じ汎用2Dグラフィックスライブラリ
+- 2Dgraphics
+  - [pixie](https://github.com/treeform/pixiebook)
+    - Cairoとかと同じ汎用2Dグラフィックスライブラリ
 
-CLI
-- [cligen](https://github.com/c-blake/cligen)
-  - dispatchした関数とファイルを同名にしてコンパイルするだけでCLIアプリができる
-Additional
+- CLI
+  - [cligen](https://github.com/c-blake/cligen)
+    - dispatchした関数とファイルを同名にしてコンパイルするだけでprocのCLIアプリ化ができる
+
+**Additional**
 
 - Threading
   - [weave](https://github.com/mratsim/weave)
     - message-passing basedなマルチスレッディングランタイム。raytracingのデモもある
     - 但しNim Manual上にstdライブラリのasyncdispatchを使う説明が多いから導入コストがある
 
-TextEditor
-- [moe](https://github.com/fox0430/moe)
-  - Vim-likeテキストエディタ。日本人の方が主軸になって頑張ってる
+- TextEditor
+  - [moe](https://github.com/fox0430/moe)
+    - Vim-likeテキストエディタ。日本人の方が主軸になって頑張ってる
 
+- GUI
+  - [nimx](https://github.com/yglukhov/nimx)
+    - SDL2(OpenGL)-based GUI library, nimble installからbuild一発でGUIアプリができる
+    - でもraylib, waふつーに動くからいらんくねって感じもする
 
-GUI
-- [nimx](https://github.com/yglukhov/nimx)
-  - SDL2(OpenGL)-based GUI library, nimble installからbuild一発でGUIアプリができる
-  - でもraylib, waふつーに動くからいらんくねって感じもする
-
-Web
-- [nim-basolato](https://github.com/itsumura-h/nim-basolato?tab=readme-ov-file)
+- Web
+  - [nim-basolato](https://github.com/itsumura-h/nim-basolato?tab=readme-ov-file)
+    - actix-web並の速度を誇るフルスタックwebフレームワーク、日本人の方が主軸になって開発してる
 
 ## examples
 
