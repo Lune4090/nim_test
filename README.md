@@ -7,10 +7,12 @@
 Clever Cとでも言うべき言語.
 
 個人的に必要かつ今まで触れてきた言語(python, julia, c++, rust)で得られなかった
-- ミニマルかつ高速な静的コンパイル
-- 後から見返しても問題ない記述の簡潔さ
-- 必要最低限のマクロやライブラリなどの拡張性
-の両立をしているのでこれからの主軸にしたいと思った.
+
+- ミニマルかつ高速なバイナリを吐ける静的コンパイル
+- 後から見返し易い記述の簡潔さと自然さ
+- 各種関数, ASTいじれるマクロや各種ライブラリなどの拡張性
+
+の両立をしているのでこれからの主軸にしたい.
 
 ただキラーアプリっぽいものが思いつかないからまだ知名度が低い状態は続きそう
 
@@ -73,6 +75,15 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
     - そもそもゲームフレームワークなのでまあGUIアプリも作れる
     - WebAssembly(via emscripten, using [this config file](https://github.com/planetis-m/raylib-examples/blob/main/core/basic_window_web.nims))やAndroid(need Android SDK and some setting)向けのCompileもできるので、後述のweb frameworkと組み合わせたりすればいい感じにリッチなWebApp作れるんじゃない、ひとまずやる気はないけど
 
+- Python
+  - nimpy
+    - let (/ var) hoge = "***python library name***".pyImportでインストール済みのPythonライブラリを引っ張ってこれる
+    - scikit-learnのファイルが欲しいとか、グラフ描画だけPython使いたいとかのときに使える
+    - とりあえずnimで作ったseqをtoTensor経由でTensor化、Ndarray化してpyplot.show()できることは確認した
+    - np.array(@[1, 2, 3])はPyObjectになってくれる(つまり、特別な関数を用いなくてもSeq → PyObjectはできる)が、PyObject → Seqはない
+    - ただし上記はむしろ例外的で、Tensor to ndarray (toNdarray), ndarray to Tensor (toTensor)はできるし、toSeq1D経由でSeqには戻せる
+    - 後、scikit-learnのサンプルファイルやtoNdarrayで作ったnumpyのndarrayはNumpyArray型というPyObjectとは別の型になる
+
 - Science
   - [Unchained](https://github.com/SciNim/Unchained)
     - compile-time unit checker
@@ -82,7 +93,7 @@ Nimのパッケージのマニュアルは非常に分かりづらいが、Nim�
 
 - 2Dgraphics
   - [pixie](https://github.com/treeform/pixiebook)
-    - Cairoとかと同じ汎用2Dグラフィックスライブラリ
+    - Cairoとかと同じ汎用2Dグラフィックス作成ライブラリ
 
 - CLI
   - [cligen](https://github.com/c-blake/cligen)
@@ -149,9 +160,27 @@ try:
 finally:
   client.close()
 
-# Do NOT forget to add -d:ssl option to enable ssl encryption when you compile the code !!!
+# Do NOT forget to add -d:ssl compile option to enable ssl encryption at compile time !!!
   
 ```
+
+### seq -> dataframe -> column -> dataframe -> seq
+
+```nim
+
+import sequtils, arraymancer, datamancer
+
+var
+  sq0 = @[1, 2, 3]
+  sq1 = @[4.0, 2.5, 8.5]
+  df  = toDF({"weight": sq0, "height": sq1})
+  cl  = df.get("weight")
+  ts  = cl.toTensor
+  sq1 = ts.toSeq1D
+
+
+```
+
 ## tips
 
 ### nim c <name.nim> と nimble buildの違い
