@@ -13,4 +13,4 @@ bin           = @["nim_test"]
 
 requires "nim >= 2.0.2"
 
-requires "plotly", "results"
+requires "results", "plotly", "arraymancer", "datamancer", "numericalnim", "unchained", "naylib"
