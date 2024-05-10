@@ -1,5 +1,101 @@
 [
   {
+    "name": "shellcmd",
+    "url": "https://github.com/Alogani/shellcmd",
+    "method": "git",
+    "tags": [
+      "library",
+      "childprocess",
+      "async",
+      "script",
+      "bash",
+      "terminal",
+      "system administration",
+    ],
+    "description": "Collection of Terminal commands to be used inside nim",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/shellcmd"
+  },
+  {
+    "name": "asyncproc",
+    "url": "https://github.com/Alogani/asyncproc",
+    "method": "git",
+    "tags": [
+      "library",
+      "childprocess",
+      "async",
+    ],
+    "description": "Flexible child process spawner with strong async features",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/asyncproc"
+  },
+  {
+    "name": "aloganimisc",
+    "url": "https://github.com/Alogani/aloganimisc",
+    "method": "git",
+    "tags": [
+      "library",
+      "dependency"
+    ],
+    "description": "Dependency for asyncproc and shellcmd package. Small utilities not worthing a package. Not meant to be used in production",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/aloganimisc"
+  },
+  {
+    "name": "asyncio",
+    "url": "https://github.com/Alogani/asyncio",
+    "method": "git",
+    "tags": [
+      "library",
+      "async",
+      "asyncfile",
+      "asyncpipe",
+      "asyncstreams"
+    ],
+    "description": "Async files and streams tools",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/asyncio"
+  },
+  {
+    "name": "asyncsync",
+    "url": "https://github.com/Alogani/asyncsync",
+    "method": "git",
+    "tags": [
+      "library",
+      "async",
+      "primitives"
+    ],
+    "description": "Async primitives working on std/asyncdispatch",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/asyncsync"
+  },
+  {
+    "name": "csvdict",
+    "url": "https://github.com/Alogani/csvdict",
+    "method": "git",
+    "tags": [
+      "csv",
+      "library",
+      "data",
+    ],
+    "description": "Another CsvTable API. Goals are efficient, simple and flexible",
+    "license": "MIT",
+    "web": "https://github.com/Alogani/csvdict"
+  },
+  {
+    "name": "well_parser",
+    "url": "https://codeberg.org/samsamros/RRC-permits",
+    "method": "git",
+    "tags": [
+      "Texas Railroad Commission",
+      "Drilling Permits",
+      "Injection wells"
+    ],
+    "description": "This project is intended to parse Texas Railroad Commission data provided in an unsuitable and non-transparent format. As of 2024, this code is able to parse Drilling Permit Master and Trailer and Underground Injection Control Data",
+    "license": "GPL-3.0",
+    "web": "https://codeberg.org/samsamros/RRC-permits"
+  },
+  {
     "name": "avrman",
     "url": "https://github.com/Abathargh/avrman",
     "method": "git",
@@ -33124,11 +33220,11 @@
     "method": "git",
     "tags": [
       "graphics",
-      "gpu",
+      "gpu"
     ],
     "description": "A high-performance graphics renderer made for web engines",
     "license": "MIT",
-    "web": "https://github.com/ferus-web/mirage"
+    "web": "https://github.com/ferus-web/ferusgfx"
   },
   {
     "name": "nimtcl",
@@ -33151,7 +33247,7 @@
     "method": "git",
     "tags": [
       "smtp",
-      "mail",
+      "mail"
     ],
     "description": "Make sending HTML and file emails easier.",
     "license": "MIT",
@@ -33170,5 +33266,62 @@
     "description": "Execute commands and upload/download files using multiple processes and asynchronous methods via SSH.",
     "license": "MIT",
     "web": "https://github.com/up7down8/asyncssh2"
+  },
+  {
+    "name": "rex",
+    "url": "https://github.com/minamorl/rex",
+    "method": "git",
+    "tags": [
+      "observable",
+      "observe",
+      "library",
+      "rx",
+      "reactive"
+    ],
+    "description": "Reactive programming, in nim",
+    "license": "MIT",
+    "web": "https://github.com/minamorl/rex"
+  },
+  {
+    "name": "dim",
+    "url": "https://github.com/lorenzoliuzzo/dim",
+    "method": "git",
+    "tags": [
+      "dimensional",
+      "analysis"
+    ],
+    "description": "Dimensional Analysis in Nim",
+    "license": "GPL-3.0-or-later",
+    "web": "https://github.com/lorenzoliuzzo/dim"
+  },
+  {
+    "name": "respite",
+    "url": "https://github.com/guzba/respite",
+    "method": "git",
+    "tags": [
+      "redis",
+      "resp",
+      "sqlite",
+      "sql",
+      "database",
+      "server"
+    ],
+    "description": "Redis protocol backed by SQLite",
+    "license": "MIT",
+    "web": "https://github.com/guzba/respite"
+  },
+  {
+    "name": "sudo",
+    "url": "https://github.com/FyraLabs/sudo.nim",
+    "method": "git",
+    "tags": [
+      "sudo",
+      "linux",
+      "unix"
+    ],
+    "description": "Detect if you are running as root, restart self with sudo if needed or setup uid zero when running with the SUID flag set.",
+    "license": "MIT",
+    "web": "https://github.com/FyraLabs/sudo.nim",
+    "doc": "https://fyralabs.github.io/sudo.nim/"
   }
 ]

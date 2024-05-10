@@ -7,13 +7,13 @@ import ./histogram as hs
 import ./contour as co
 import ./heatmap as hm
 
-for word in fb.fizzBuzzitr(0, 100):
-  echo word
+echo fb.fizzBuzzitr(0, 100)
+echo fb.fizzBuzzitr(100, 0)
 
-sc.draw_scatter()
-hs.draw_histogram()
-co.draw_contour()
-hm.draw_heatmap()
+# sc.draw_scatter()
+# hs.draw_histogram()
+# co.draw_contour()
+# hm.draw_heatmap()
 
 # var seed = initRand(0)
 # var a = gauss(seed)

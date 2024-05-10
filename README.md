@@ -164,7 +164,7 @@ finally:
   
 ```
 
-### seq -> dataframe -> column -> dataframe -> seq
+### seq -> dataframe -> column -> tensor -> seq
 
 ```nim
 
@@ -174,10 +174,8 @@ var
   sq0 = @[1, 2, 3]
   sq1 = @[4.0, 2.5, 8.5]
   df  = toDF({"weight": sq0, "height": sq1})
-  cl  = df.get("weight")
-  ts  = cl.toTensor
-  sq1 = ts.toSeq1D
-
+  ts = df["weight", float]
+  sq2 = ts.toSeq1D
 
 ```
 

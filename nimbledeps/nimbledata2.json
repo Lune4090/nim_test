@@ -75,6 +75,15 @@
           }
         ]
       }
+    },
+    "results": {
+      "0.4.0": {
+        "f5971c64ccb600d34df5a162cad32e262f8d84f9": [
+          {
+            "path": "/home/lune/nim_test"
+          }
+        ]
+      }
     }
   }
 }
