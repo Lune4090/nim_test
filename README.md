@@ -1,5 +1,96 @@
 # nim/nimble overview
 
+## 注意事項
+
+### StyleGuide
+
+基本的に
+- [Standard Library Style Guide](https://nim-lang.org/docs/nep1.html)
+- [The Status Nim style guide](https://status-im.github.io/nim-style-guide/formatting.naming.html)
+を遵守.
+
+以下, 簡潔に纏める.
+
+- Naming
+  - const: free
+  - proc/func: snake_case
+  - type: PascalCase
+  - var/let: camelCase
+  - constructor
+    - obj: init
+    - ref obj: new
+  - seqence operation (confusing ones)
+    - append -> add
+    - compare -> cmp
+    - length -> len
+    - remove -> del
+    - include/exclude -> incl/excl
+  - error: PascalCase
+  - defect: PascalCase
+
+- Import
+  - USE "std/[libname]
+
+- Others
+  - Types
+    - USE byte/seq[byte] for binary data.
+    - "string" encoding default in Nim is UTF-8
+    - USE signed integers in most of the case
+    - DONT USE Natural because "int" <-> "Natural" conversion is weak
+    - USE "a..b" instead of "a .. b".
+    - DONT USE "result", USE "return" in any case.
+
+  - Improve tranparency
+    - USE "const" and "let" if you can to avoid "var".
+    - USE "func" if you can to avoid "proc" and "method" (poor implementation).
+    - DONT USE public functions/variables unless it's really needed.
+    - DONT USE macro unless it improve readability (not writability)
+    - USE "obj" and object variant.
+    - DONT USE "ref obj" unless you really need inheritance.
+
+  - Error handling
+    - USE results library to handle error.
+
+  - Debugging
+    - USE gdb if you want
+
+### Exception
+
+- Exception
+  - CatchableError
+    - IOError
+      - EOFError
+    - ValueError (string/object conversion)
+      - KeyError (key cannot found in table)
+    - OSError (os service fail)
+      - LibraryError (dll cannot load)
+
+  - Defect(UnCatchable)
+    - ArithmeticDefect
+    - AssertionDefect
+    - DeadThreadDefect
+    - NilAcccessDefect
+    - FieldDefect
+    - DivByZeroDefect
+    - OverflowDefect
+    - OutOfMemdefect
+    - FloatingPointDefect
+      - FloatInvalidOpDefect
+      - FloatDivByZeroDefect
+      - FloatOverflowDefect
+      - FloatUnderflowDefect
+    - IndexDefect
+    - StackOverflowDefect (coroutine call overflow)
+    - ObjectVonversionDefect
+
+- RootObj    
+  - RootEffect
+    - IOEffect
+      - ReadIOEffect
+      - WriteIOEffect
+      - ExecIOeffect
+    - TimeEffect
+
 ## 感想
 
 ### 20240420 (Update: 0510)
@@ -20,7 +111,7 @@ Clever Cとでも言うべき言語.
 
 ### [Nim Tutorial](https://nim-lang.org/docs/tut1.html)
 
-一通り目を通したが、覚えきれてないので適宜参照
+一通り目を通したが, 覚えきれてないので適宜参照
 
 ### [SciNim](https://scinim.github.io/getting-started/)
 
@@ -53,13 +144,13 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
 - Plotting
   - [**nim-plotly**](https://github.com/SciNim/nim-plotly/tree/master/examples)
     - libraryname: plotly
-    - pythonのplotlyに近い、Seqを入力としてTraceを作成、Layoutを定義後TraceとLayoutからPlotを作成、show()で即時描画
+    - pythonのplotlyに近い, Seqを入力としてTraceを作成, Layoutを定義後TraceとLayoutからPlotを作成, show()で即時描画
   - [chroma](https://treeform.github.io/chroma/)
-    - 色指定、必須ではない
+    - 色指定, 必須ではない
 
 - Data analysis
   - [**arraymancer**](https://github.com/mratsim/Arraymancer)
-    - seq.toTensor.reshapeでTensor作成。juliaに比べると限定的だがブロードキャストが可能、ニューラルネットワーク用のツールも集約
+    - seq.toTensor.reshapeでTensor作成. juliaに比べると限定的だがブロードキャストが可能, ニューラルネットワーク用のツールも集約
   - [**datamancer**](https://scinim.github.io/Datamancer/datamancer.html)
     - col-indexのdataframe(seq)
 
@@ -74,7 +165,7 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
 - GUI
   - [**fidget**](https://github.com/treeform/fidget)
     - Figmaに影響されたミニマルなGUIフレームワーク
-    - シンプルなので少しいじるのが大変だが、かなりいい感じの見た目にできる
+    - シンプルなので少しいじるのが大変だが, かなりいい感じの見た目にできる
 
 - Result type
   - [**Results**](https://github.com/arnetheduck/nim-results)
@@ -86,7 +177,7 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
     - libraryname: raylib
     - raylib(backend: OpenGL4.3)のwrapper, 2D,3D共に動作確認済み
     - そもそもゲームフレームワークなのでまあGUIアプリも作れる
-    - WebAssembly(via emscripten, using [this config file](https://github.com/planetis-m/raylib-examples/blob/main/core/basic_window_web.nims))やAndroid(need Android SDK and some setting)向けのCompileもできるので、後述のweb frameworkと組み合わせたりすればいい感じにリッチなWebApp作れるんじゃない、ひとまずやる気はないけど
+    - WebAssembly(via emscripten, using [this config file](https://github.com/planetis-m/raylib-examples/blob/main/core/basic_window_web.nims))やAndroid(need Android SDK and some setting)向けのCompileもできるので, 後述のweb frameworkと組み合わせたりすればいい感じにリッチなWebApp作れるんじゃない, ひとまずやる気はないけど
 
 - CLI
   - [cligen](https://github.com/c-blake/cligen)
@@ -94,23 +185,24 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
 
 ### Additional
 
-- Python
+- Nim->Python
   - nimpy
+    - nimporterが双対関係(python->nim)のライブラリ
     - let (/ var) hoge = "***python library name***".pyImportでインストール済みのPythonライブラリを引っ張ってこれる
-    - scikit-learnのファイルが欲しいとか、グラフ描画だけPython使いたいとかのときに使える
-    - とりあえずnimで作ったseqをtoTensor経由でTensor化、Ndarray化してpyplot.show()できることは確認した
-    - np.array(@[1, 2, 3])はPyObjectになってくれる(つまり、特別な関数を用いなくてもSeq → PyObjectはできる)が、PyObject → Seqはない
-    - ただし上記はむしろ例外的で、Tensor to ndarray (toNdarray), ndarray to Tensor (toTensor)はできるし、toSeq1D経由でSeqには戻せる
-    - 後、scikit-learnのサンプルファイルやtoNdarrayで作ったnumpyのndarrayはNumpyArray型というPyObjectとは別の型になる
+    - scikit-learnのファイルが欲しいとか, グラフ描画だけPython使いたいとかのときに使える
+    - とりあえずnimで作ったseqをtoTensor経由でTensor化, Ndarray化してpyplot.show()できることは確認した
+    - np.array(@[1, 2, 3])はPyObjectになってくれる(つまり, 特別な関数を用いなくてもSeq → PyObjectはできる)が, PyObject → Seqはない
+    - ただし上記はむしろ例外的で, Tensor to ndarray (toNdarray), ndarray to Tensor (toTensor)はできるし, toSeq1D経由でSeqには戻せる
+    - 後, scikit-learnのサンプルファイルやtoNdarrayで作ったnumpyのndarrayはNumpyArray型というPyObjectとは別の型になる
 
 - Threading
   - [weave](https://github.com/mratsim/weave)
-    - message-passing basedなマルチスレッディングランタイム。raytracingのデモもある
+    - message-passing basedなマルチスレッディングランタイム. raytracingのデモもある
     - 但しNim Manual上にstdライブラリのasyncdispatchを使う説明が多いから導入コストがある
 
 - TextEditor
   - [moe](https://github.com/fox0430/moe)
-    - Vim-likeテキストエディタ。日本人の方が主軸になって頑張ってる
+    - Vim-likeテキストエディタ. 日本人の方が主軸になって頑張ってる
 
 - 2Dgraphics
   - [pixie](https://github.com/treeform/pixiebook)
@@ -118,7 +210,7 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
 
 - Web
   - [nim-basolato](https://github.com/itsumura-h/nim-basolato?tab=readme-ov-file)
-    - actix-web並の速度を誇るフルスタックwebフレームワーク、日本人の方が主軸になって開発してる
+    - actix-web並の速度を誇るフルスタックwebフレームワーク, 日本人の方が主軸になって開発してる
 
 ## Examples
 
@@ -126,10 +218,8 @@ v2.0.2現在でデファクトになっているパッケージマネジャーni
 
 ```nim
 
-import random
-import stats
+import std/[random, sequtils, stats]
 import plotly
-import sequtils
 
 var seed = initRand(0)
 var seed2 = initRand(1)
@@ -154,7 +244,7 @@ p.show()
 ```nim
 
 import httpclient
-let cl = newHttpClient()
+let client = newHttpClient()
 
 try:
   echo client.getContent("https://drive.google.com/uc?id=1SrmPUcMLX5mnyNsaa2E9RMOkVLUkzzzG")
@@ -169,7 +259,8 @@ finally:
 
 ```nim
 
-import sequtils, arraymancer, datamancer
+import std/sequtils
+import arraymancer, datamancer
 
 var
   sq0 = @[1, 2, 3]
@@ -183,9 +274,23 @@ var
 ### 線形重回帰(multiple regression)
 ```nim
 
-import sequtils, datamancer
+import results
+import arraymancer except read_csv
+export results
+
+proc regression*(x_vec: Tensor[float], y: Tensor[float]): Result[Tensor[float], string] =
+  let
+    xDim = x.shape[0]
+    yDim = y.shape[0]
+  if xDim != ydim:
+    return err("Dimension miss match! Xdim0: " & $Xdim & "Ydim0: " & $ydim)
+  else:
+    let params = X.pinv*y
+    return ok(params)
   
 ```
+
+### 
 
 ## tips
 
@@ -197,5 +302,9 @@ import sequtils, datamancer
 
 - nimble build : プロジェクトをビルドするコマンド
   - <project name>.nimbleを参照する
-  - nimble initがそうであったように、ディレクトリ内を一つのプロジェクトとしてみている。
-  - だから、ソースコード内にインストール済みのライブラリがあっても依存関係として記載されていないなら、buildできない、ということになる。
+  - nimble initがそうであったように, ディレクトリ内を一つのプロジェクトとしてみている. 
+  - だから, ソースコード内にインストール済みのライブラリがあっても依存関係として記載されていないなら, buildできない, ということになる. 
+
+### 文字コード取得
+
+- 単純にcharをintに変換すれば得られる. 
