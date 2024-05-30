@@ -2,6 +2,14 @@
 
 ## 注意事項
 
+### 指針
+
+1. Program is an operation to process data.
+2. Process is a module to build data processing sequence.
+3. No hidden I/O in a process.
+4. Error(operation failure) should be handled as recoverable.
+5. Defect(illegal operation) must be removed from program.
+
 ### StyleGuide
 
 基本的に
@@ -49,7 +57,7 @@
     - DONT USE "ref obj" unless you really need inheritance.
 
   - Error handling
-    - USE results library to handle error.
+    - USE "results" library to handle error.
 
   - Debugging
     - USE gdb if you want
@@ -290,7 +298,20 @@ proc regression*(x_vec: Tensor[float], y: Tensor[float]): Result[Tensor[float], 
   
 ```
 
-### 
+### Macro
+```nim
+import macros
+
+macro echo_nimnode(head: untyped): untyped =
+  result = newNimNode(nnkStmtList, head)
+  result.add(newCall(newIdentNode("echo"), head))
+
+import strformat
+macro echo_parsestr(head: untyped): untyped =
+  parseStmt(fmt"""echo {repr(head)}""")
+  
+```
+
 
 ## tips
 
