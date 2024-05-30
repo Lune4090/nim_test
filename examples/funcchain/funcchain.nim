@@ -1,47 +1,19 @@
-#[
-  方針
-  1. Rust同様、CatchableErrorが生じる領域はResult[T, ref CatchableError]型を通して明示的に処理する
-  - Uncatchableなエラー(SystemError系)はpanicさせても良いものとする
-  2. 可能な限り副作用なしの領域を広げ, procよりfuncを優先して用いる. IO周りやCの関数との相互接続領域などの副作用が生じる部分は最小化する
-  3. result型を用いなくてよいのはinim使用時のみであり、全ての場合においてresultsはmust-useとする
-  4. その他、styleguideに従う
-
-  System/exception
-  - Exception
-    - CatchableError
-      - IOError
-        - EOFError
-      - ValueError
-        - KeyError
-      - OSError
-        - LibraryError
-    - Defect(UnCatchable)
-      - ArithmeticDefect
-      - AssertionDefect
-      - DeadThreadDefect
-      - NilAcccessDefect
-      - FieldDefect
-      - DivByZeroDefect
-      - OverflowDefect
-      - OutOfMemdefect
-      - FloatingPointDefect
-        - FloatInvalidOpDefect
-        - FloatDivByZeroDefect
-        - FloatOverflowDefect
-        - FloatUnderflowDefect
-      - IndexDefect
-      - StackOverflowDefect (coroutine call overflow)
-      - ObjectVonversionDefect
-    - RootEffect
-      - IOEffect
-        - EOFEror
-]# 
-
-
 {. push raises: [] .}
-import results, strutils
 
+import std/[sequtils, sugar, strutils]
+import results
 export results
+
+func generateRangeSeqRec(lo: int, hi: int): Result[seq[int], string] =
+  if lo == hi:
+    return ok @[hi]
+  else:
+    return ok @[lo] & ?generateRangeSeqRec(lo+1, hi)
+
+echo generateRangeSeqRec(3, 10)
+echo generateRangeSeqRec(3, 10).value.map(x => x*x)
+echo generateRangeSeqRec(3, 10).value.map(f:(int)->int = x*x)
+
 
 func parseIntOriginal(x: string): Result[int, ref CatchableError] =
   try:
